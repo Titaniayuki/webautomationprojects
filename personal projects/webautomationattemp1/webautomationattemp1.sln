@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "webautomationattemp1", "webautomationattemp1\webautomationattemp1.pyproj", "{E2CD4801-ACCB-408F-A2B3-9E1A9506383D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2CD4801-ACCB-408F-A2B3-9E1A9506383D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2CD4801-ACCB-408F-A2B3-9E1A9506383D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEB016B7-B855-4170-BFDF-34147EA50894}
+	EndGlobalSection
+EndGlobal
