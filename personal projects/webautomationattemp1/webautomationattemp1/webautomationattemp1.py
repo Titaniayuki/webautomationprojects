@@ -1,19 +1,19 @@
-print ("hello, world")
+
 from selenium import webdriver
-
-
+from selenium.webdriver.support.ui import Select
+from time import sleep
 
 
 
 def main():
     #ask what you want
    
-    task = int(input("what do you want to do?\nquestrade -1\n"))
-
-    if (task == 1):
-        questrade()
-    else:
-        pass
+    #task = int(input("what do you want to do?\nquestrade -1\n"))
+    questrade()
+    #if (task == 1):
+    #    questrade()
+    #else:
+    #    pass
 
 
     #ask username
@@ -37,17 +37,16 @@ def questrade():
 
     while (not done):
 
-        username = input("Username?")
-        password = input("Password?")
+        
 
         login.click()
         
         UserID = driverforquestrade.find_element_by_xpath('//*[@id="userId"]')
-        UserID.send_keys(username)
+        UserID.send_keys(USERNAME)
 
 
         passwordentry = driverforquestrade.find_element_by_xpath('//*[@id="password"]')
-        passwordentry.send_keys(password)
+        passwordentry.send_keys(PASSWORD)
 
         loginbutton = driverforquestrade.find_element_by_xpath('/html/body/div[2]/div[1]/form/div[3]/button')
         loginbutton.click()
@@ -60,6 +59,7 @@ def questrade():
             #login failed
             print("log in failed/n")
         else:
+            sleep(3)
             emailcode = driverforquestrade.find_element_by_xpath('/html/body/div[2]/div/form/div[3]/label')
             emailcode.click()
 
@@ -69,7 +69,6 @@ def questrade():
 
             #retrieve code
             code = getcode()
-            print (code)
                                   
             entercode = driverforquestrade.find_element_by_xpath('//*[@id="Code"]')
             entercode.send_keys(code)
@@ -79,9 +78,7 @@ def questrade():
 
             #confirm pass
             
-            
-            pagetitle = driverforquestrade.find_element_by_xpath('/html/body/app-root/div/app-myqhome/myq-summary/div/div/div[1]/myq-balance/div/div[1]/h1')
-          
+            pagetitle = driverforquestrade.find_element_by_xpath('/html/body/app-root/div/app-myqhome/myq-summary/div/div/div[1]/myq-balance/div/div[1]')
             if (pagetitle != None):
                 #in
                 getdata(driverforquestrade)
@@ -94,18 +91,30 @@ def questrade():
     return()
 
 def getdata(driverforquestrade):
-    trade =  driverforquestrade.find_element_by_xpath('/html/body/div[1]/div/div[2]/div/div[5]/button')
-    trade.click()
+    #trade =  driverforquestrade.find_element_by_xpath('/html/body/div[1]/div/div[2]/div/div[5]/button')
+    #trade.click()
     
-    TFSA = driverforquestrade.find_element_by_xpath('/html/body/main/div[3]/header/div[2]/div/div/div/select/option[1]')
-    TFSA.click()
-    TFSATOTAL = driverforquestrade.find_element_by_xpath('/html/body/main/div[5]/div/div/div/div[2]/div/div/div/div[3]/div/table/tbody[1]/tr[1]/td[4]/iq-format-number/span').text
+    #sleep(20)
+    #selectbox = Select(driverforquestrade.find_element_by_xpath('/html/body/main/div[3]/header/div[2]/div/div/div/select'))
+    #print (selectbox.options)
+    #print [o.text for o in select.options] # these are string-s
+    #select.select_by_visible_text(....)
+
+    #TFSA=selectbox.select_by_index(0)
+
+    #TFSATOTAL = driverforquestrade.find_element_by_xpath('/html/body/main/div[5]/div/div/div/div[2]/div/div/div/div[3]/div/table/tbody[1]/tr[1]/td[4]/iq-format-number/span').text
+    #print('TFSA total: %s ' % TFSATOTAL)
+
+    #TFSA=selectbox.select_by_index(1)
+    #RRSPTOTAL = driverforquestrade.find_element_by_xpath('/html/body/main/div[5]/div/div/div/div[2]/div/div/div/div[3]/div/table/tbody[1]/tr[1]/td[4]/iq-format-number/span').text
+    #print('RRSP total: %s ' % RRSPTOTAL)
+    
+    sleep(5)
+    RRSPTOTAL = driverforquestrade.find_element_by_xpath('/html/body/app-root/div/app-myqhome/myq-active-accounts/div/div/div[1]/div/div[4]/p/span').text
+    print('RRSP total: %s ' % RRSPTOTAL)
+    TFSATOTAL = driverforquestrade.find_element_by_xpath('/html/body/app-root/div/app-myqhome/myq-active-accounts/div/div/div[2]/div/div[4]/p/span').text
     print('TFSA total: %s ' % TFSATOTAL)
 
-    RRSP = driverforquestrade.find_element_by_xpath('/html/body/main/div[3]/header/div[2]/div/div/div/select/option[2]')
-    RRSP.click()
-    RRSPTOTAL = driverforquestrade.find_element_by_xpath('/html/body/main/div[5]/div/div/div/div[2]/div/div/div/div[3]/div/table/tbody[1]/tr[1]/td[4]/iq-format-number/span').text
-    print('RRSP total: %s ' % RRSPTOTAL)
     return()
 
 def getcode():
@@ -119,18 +128,20 @@ def getcode():
     gotosignin.click()
 
 
-    email = input("email")
+    #email = input("email")
     
 
     emailentry = driverforoutlook.find_element_by_xpath('//*[@id="i0116"]')
-    emailentry.send_keys(email)
+    emailentry.send_keys(EMAIL)
 
     next = driverforoutlook.find_element_by_xpath('//*[@id="idSIButton9"]')
     next.click()
 
-    password = input("Password?")
+    #password = input("Password?")
     passwordentry = driverforoutlook.find_element_by_xpath('//*[@id="i0118"]')
-    passwordentry.send_keys(password)
+    passwordentry.send_keys(EMAILPASSWORD)
+    
+    sleep(3)
 
     signin = driverforoutlook.find_element_by_xpath('//*[@id="idSIButton9"]')
     signin.click()
@@ -138,13 +149,11 @@ def getcode():
     emails = driverforoutlook.find_element_by_xpath('/html/body/div[2]/div/div[2]/div[1]/div[1]/div/div/div[3]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div[1]')
     stringcheck = emails.text
     
-    print (stringcheck)
     code = 'unknown'
     if("Questrade No-Reply" in stringcheck):
         #got email 
         prevword = 'temp' 
         
-        print (prevword)
             #get code
                 
         for word in stringcheck.split():
@@ -153,7 +162,6 @@ def getcode():
                 break
             else:
                 prevword = word
-    print(code)
     return(code)
 
 main()
